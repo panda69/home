@@ -6,6 +6,7 @@
 	e('<ul>');	
 	echo <<< EN_TETE
 <table>
+	<th>Id</th>
 	<th>Date</th>
 	<th>Cercle</th>
 	<th>Unité</th>
@@ -15,6 +16,9 @@
 EN_TETE;
 	foreach($etabsessions as $etabsession)	{
 		e('<tr>');
+		e('<td>');
+		e($etabsession['Seance']['id']);
+		e('</td>');
 		e('<td>');
 		e($time->format('d-m-Y', $etabsession['Seance']['session_date']));
 		e('</td>');

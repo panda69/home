@@ -78,6 +78,9 @@ class SeancesController extends AppController {
 	}
 	
 	public function synoptique()	{
+	}
+	
+	public function map()	{
 		$url_root = "http://" . $_SERVER['HTTP_HOST'] . $this->webroot;
 		
   		$mapOptions= array(
@@ -133,6 +136,83 @@ class SeancesController extends AppController {
 		
 		$this->set('mapOptions', $mapOptions);
 		$this->set('markers', $markers);
+	}
+	
+	public function chart()	{
+		App::import('Vendor', 'jpgraph/jpgraph');
+		App::import('Vendor', 'jpgraph/jpgraph_line');
+		
+		$seances = $this->Seance->find('all', array(
+		    'recursive' => -1,
+		    'fields' => array('Seance.result'),
+		    'order' => array('Seance.id')
+			)
+		);
+								
+		$ydata = array();
+		foreach($seances as $seance)	{
+			$ydata[] = $seance['Seance']['result'];
+		}
+		
+		// Width and height of the graph
+		$width = 1300; $height = 750;
+		
+		// Create a graph instance
+		$graph = new Graph($width,$height);
+		
+		// Specify what scale we want to use,
+		// int = integer scale for the X-axis
+		// int = integer scale for the Y-axis
+		$graph->SetScale('intint');
+		
+		// Setup a title for the graph
+		$graph->title->Set('Séances');
+		
+		$ysum = array();
+		$ycount = count($ydata);
+		for ($i=0; $i < $ycount; $i++)	{
+			$sum = 0;
+			for ($j=0; $j <= $i; $j++)	{
+				$sum += $ydata[$j];
+			}
+			$ysum[$i] = $sum;
+		}
+		
+		$p1 = new LinePlot($ydata);
+		$graph->Add($p1);
+		
+		$p2 = new LinePlot($ysum);
+		$graph->Add($p2);
+		
+		$p1->SetColor("#55bbdd");
+		$p1->SetLegend('Séances');
+		$p1->mark->SetType(MARK_FILLEDCIRCLE,'',1.0);
+		$p1->mark->SetColor('#55bbdd');
+		$p1->mark->SetFillColor('#55bbdd');
+		$p1->SetCenter();
+		
+		$p2->SetColor("#aaaaaa");
+		$p2->SetLegend('Somme séances');
+		$p2->mark->SetType(MARK_UTRIANGLE,'',1.0);
+		$p2->mark->SetColor('#aaaaaa');
+		$p2->mark->SetFillColor('#aaaaaa');
+		$p2->value->SetMargin(14);
+		$p2->SetCenter();
+		
+		$graph->legend->SetFrameWeight(1);
+		$graph->legend->SetColor('#4E4E4E','#00A78A');
+		$graph->legend->SetMarkAbsSize(8);
+		
+		$full_path_graph = WWW_ROOT;
+		$full_path_graph .= DIRECTORY_SEPARATOR . 'img';
+		$full_path_graph .= DIRECTORY_SEPARATOR . 'graph';
+		$full_path_graph .= DIRECTORY_SEPARATOR . 'graph.png';
+		
+		if (file_exists($full_path_graph))	{
+			unlink($full_path_graph);
+		}
+		 
+		$graph->Stroke($full_path_graph);
 	}
 	
 }
