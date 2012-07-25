@@ -1,4 +1,6 @@
 <?php
+	$this->Html->addCrumb('Outils', '/Tools');
+
 	e('<p>');
 	e($this->Html->link('Calcul espérance et écart-type', array('controller' => 'Tools', 'action' => 'Calc')));
 	e('</p>');

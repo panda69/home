@@ -1,3 +1,4 @@
+<?php e($this->Html->addCrumb('Cercles', '/Cercles')); ?>
 <h2>Gestion des cercles</h2>
 <ul>
 <?php

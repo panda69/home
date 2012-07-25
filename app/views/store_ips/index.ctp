@@ -1,3 +1,4 @@
+<?php $this->Html->addCrumb('IPs', '/StoreIps'); ?>
 <h2>Gestion des IPs</h2>
 <ul>
 <?php

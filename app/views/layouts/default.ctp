@@ -39,7 +39,9 @@
 	<div id="container">
 		<div id="header">
 			<h1>
-			<?php e($this->Html->link('Home Panda', array('controller' => 'pages', 'action' => 'home'))); ?>
+			<!--  <?php e($this->Html->link('Home Panda', array('controller' => 'pages', 'action' => 'home'))); ?>-->
+			<?php e($this->Html->getCrumbs(' > ','Home')); ?>
+			<?php e($this->Html->addCrumb('Home', '/')); ?>
 			<?php
 				if (!is_null($this->Session->read('Auth.User')))	{
 					e('<span style="float:right">'); 

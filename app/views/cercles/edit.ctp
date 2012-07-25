@@ -1,4 +1,7 @@
-<?php 
+<?php
+	$this->Html->addCrumb('Cercles', '/cercles');
+	$this->Html->addCrumb('Editer un cercle');
+
 	e($this->Form->create('Cercle'));
 	e($this->Form->hidden('id'));
 	e($this->Form->input('name', array('label' => 'Nom', 'class' => 'xlarge')));

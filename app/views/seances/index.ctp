@@ -1,3 +1,4 @@
+<?php $this->Html->addCrumb('Séances', '/Seances'); ?>
 <h2>Gestion des séances</h2>
 <ul>
 <?php

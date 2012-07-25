@@ -1,4 +1,7 @@
 <?php
+	$this->Html->addCrumb('Outils', '/Tools');
+	$this->Html->addCrumb('Calcul espérance et écart-type', '/Tools/Calc');	
+
 	e($this->Form->create("Tools", array('action' => 'Calc')));
 	foreach($spread as $key => $value)	{
 		e($this->Form->input($key, 

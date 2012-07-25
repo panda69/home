@@ -1,3 +1,7 @@
+<?php
+	$this->Html->addCrumb('Pays', '/pays');
+	$this->Html->addCrumb('Ajouter un pays', '/pays/add');
+?>
 <h2>Ajouter un nouveau pays</h2>
 <?php
 	e($this->Form->create('Pays'));

@@ -1,4 +1,7 @@
 <?php
+	$this->Html->addCrumb('Séances', '/seances');
+	$this->Html->addCrumb('Editer une séance');
+
 	e($this->Form->create('Seance'));
 	e($this->Form->hidden('id'));
 	e($this->Form->input('unit', array('label' => 'Unité', 'class'=>'small')));

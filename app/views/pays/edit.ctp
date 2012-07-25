@@ -1,4 +1,7 @@
-<?php 
+<?php
+	$this->Html->addCrumb('Pays', '/pays');
+	$this->Html->addCrumb('Editer un pays');
+
 	e($this->Form->create('Pays'));
 	e($this->Form->hidden('id'));
 	e($this->Form->input('name', array('label' => 'Nom', 'class' => 'xlarge')));

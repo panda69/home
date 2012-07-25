@@ -1,3 +1,4 @@
+<?php e($this->Html->addCrumb('Pays', '/Pays')); ?>
 <h2>Gestion des pays</h2>
 <ul>
 <?php

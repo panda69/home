@@ -1,6 +1,8 @@
 <?php
-	e($this->Form->create("Tools", array('action' => 'Estimation')));
+	$this->Html->addCrumb('Outils', '/Tools');
+	$this->Html->addCrumb('Estimation', '/Tools/Estimation');	
 
+	e($this->Form->create("Tools", array('action' => 'Estimation')));
 	e($this->Form->input('ev', array('label' => 'Espérance', 'class' => 'xlarge')));
 	e($this->Form->input('sd', array('label' => 'Ecart-type', 'class' => 'xlarge')));
 	e($this->Form->input('hours', array('label' => 'Nbr d\'heures', 'class' => 'large')));
