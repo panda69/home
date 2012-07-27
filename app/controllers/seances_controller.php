@@ -138,16 +138,33 @@ class SeancesController extends AppController {
 		$this->set('markers', $markers);
 	}
 	
-	public function chart()	{
+	public function charts()	{
+		
+	}
+	
+	public function chart($choice=1)	{
 		App::import('Vendor', 'jpgraph/jpgraph');
 		App::import('Vendor', 'jpgraph/jpgraph_line');
 		
-		$seances = $this->Seance->find('all', array(
-		    'recursive' => -1,
-		    'fields' => array('Seance.result'),
-		    'order' => array('Seance.id')
-			)
-		);
+		$params = array(
+			'recursive' => -1,
+			'fields' => array('Seance.result'),
+			'order' => array('Seance.id')
+		);	
+
+		$subtitle = '(global)';
+		switch ($choice)	{
+			case 2:
+				$subtitle = '(Hi-Lo)';
+				$params['conditions'] = array('Seance.sb' => 0);
+				break;
+			case 3:
+				$subtitle = '(Stratégie de base)';
+				$params['conditions'] = array('Seance.sb' => 1);
+				break;
+		}
+		
+		$seances = $this->Seance->find('all', $params);
 								
 		$ydata = array();
 		foreach($seances as $seance)	{
@@ -167,6 +184,7 @@ class SeancesController extends AppController {
 		
 		// Setup a title for the graph
 		$graph->title->Set('Séances');
+		$graph->subtitle->Set($subtitle);
 		
 		$ysum = array();
 		$ycount = count($ydata);
