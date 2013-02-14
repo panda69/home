@@ -1,5 +1,6 @@
 <?php
 	$this->Html->addCrumb('Outils', '/Tools');
+	$this->Html->addCrumb('Simulation Monsieur G.', '/Tools');
 	$this->Html->addCrumb('Calcul espérance et écart-type', '/Tools/Calc');	
 
 	e($this->Form->create("Tools", array('action' => 'Calc')));

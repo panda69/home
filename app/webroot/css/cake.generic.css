@@ -286,49 +286,49 @@ input.xsmall {
 	clear: both;
 	font-size: 110%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
+	padding: 4px;
 	width:10px;
-	height:9px;
+	height:20px;
 }
 input.small {
 	clear: both;
 	font-size: 110%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
+	padding: 4px;
 	width:35px;
-	height:9px;
+	height:20px;
 }
 input.medium {
 	clear: both;
 	font-size: 110%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
+	padding: 4px;
 	width:50px;
-	height:9px;
+	height:20px;
 }
 input.large {
 	clear: both;
 	font-size: 110%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
+	padding: 4px;
 	width:100px;
-	height:9px;
+	height:20px;
 }
 input.xlarge {
 	clear: both;
 	font-size: 110%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
+	padding: 4px;
 	width:180px;
-	height:9px;
+	height:20px;
 }
 input.xxlarge {
 	clear: both;
 	font-size: 110%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
+	padding: 4px;
 	width:250px;
-	height:9px;
+	height:20px;
 }
 
 input, textarea {
@@ -598,3 +598,6 @@ div.code-coverage-results span.result-good {
 	color: red;
 }
 
+.boxSimResult {
+	width:400px;
+}

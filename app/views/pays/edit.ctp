@@ -2,9 +2,16 @@
 	$this->Html->addCrumb('Pays', '/pays');
 	$this->Html->addCrumb('Editer un pays');
 
-	e($this->Form->create('Pays'));
-	e($this->Form->hidden('id'));
-	e($this->Form->input('name', array('label' => 'Nom', 'class' => 'xlarge')));
-	e($this->Form->input('code_iso', array('label' => 'Code ISO', 'class' => 'xsmall')));
+	echo $this->Form->create('Pays');
+	echo $this->Form->hidden('id');
+	echo $this->Form->input('name', array('label' => 'Nom', 'class' => 'xlarge'));
+	//e($this->Form->input('code_iso', array('label' => 'Code ISO', 'class' => 'xsmall')));
+	echo $this->Form->input('code_iso', array(
+		'label' => 'Code ISO', 
+		'type' => 'select', 
+		'options' => $this->FlagCountry->flagCountries()
+	));
+
+
 	e($this->Form->end('Sauvegarder'));
 ?>

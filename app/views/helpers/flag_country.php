@@ -10,4 +10,14 @@ class FlagCountryHelper extends FormHelper	{
 		return $flag_html_image;
 	}
 	
+	public function flagCountries()	{
+		$arrFlags = array();
+		$flags = glob(WWW_ROOT . IMAGES_URL . 'flags/*.png');
+		foreach ($flags as $flag) {
+			$arrFlags[ basename($flag, '.png')] = basename($flag, '.png');
+		}
+		
+		return $arrFlags;
+	}
+	
 }

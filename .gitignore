@@ -1,0 +1,6 @@
+.buildpath
+.settings
+.project
+app/tmp/
+app/config/database.php
+
