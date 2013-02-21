@@ -1,7 +1,7 @@
 <?php
 
 class SeancesController extends AppController {
-	public $helpers = array('Time', 'DatePicker', 'GoogleMapV3', 'FlagCountry');
+	public $helpers = array('Time', 'DatePicker', 'FlagCountry');
 	public $paginate = array(
 		'fields' => array('Seance.id','Seance.session_date','Cercles.name','Pays.code_iso','Seance.unit','Seance.sb','Seance.result'),
 		'limit' => 20, 
@@ -81,61 +81,6 @@ class SeancesController extends AppController {
 	}
 	
 	public function map()	{
-		$url_root = "http://" . $_SERVER['HTTP_HOST'] . $this->webroot;
-		
-  		$mapOptions= array(
-			'width'=>'1235px',				//Width of the map
-			'height'=>'800px',				//Height of the map
-			'zoom'=>7,						//Zoom
-			'type'=>'ROADMAP', 				//Type of map (ROADMAP, SATELLITE, HYBRID or TERRAIN)
-			'latitude'=>45.759723,			//Default latitude if the browser doesn't support localization or you don't want localization
-			'longitude'=>4.842223,			//Default longitude if the browser doesn't support localization or you don't want localization
-			'localize'=>false,				//Boolean to localize your position or not
-			'marker'=>true,					//Boolean to put a marker in the position or not
-			'markerIcon'=>'http://google-maps-icons.googlecode.com/files/home.png',	//Default icon of the marker
-			'infoWindow'=>true,				//Boolean to show an information window when you click the marker or not
-			'windowText'=>'My Position'		//Default text inside the information window
-		);		
-		
-		$markerOptions= array(
-			'id' => NULL,
-			'latitude' => NULL,
-			'longitude' => NULL,
-			'markerIcon' => $url_root . '/img/cg_icon.png',
-			'shadowIcon' => $url_root . '/img/cg_icon.png',
-			'infoWindow' => true,
-			'windowText' => NULL
-		);
-
-		$windowText = '<div style="width:220px;height:110px;background:#52D017;border-width:2px;border-style:solid;border-color:black;padding-left:1px;padding-top:1px">';
-		$windowText .= '<strong style="text-decoration:underline">%s</strong><br/><br/>';
-		$windowText .= '<b>Visite(s): %s</b><br/>';
-		$windowText .= '<b>Résultat: %s</b><br/>';
-		$windowText .= '</div>';
-		
-		$sql = '
-		SELECT cercles.id, cercles.name, cercles.lat, cercles.lng, COUNT(seances.id) as nbr_seances, SUM(seances.result) as gain
-		FROM seances
-		INNER JOIN cercles ON cercles.id = seances.cercle_id
-		GROUP BY cercles.id';
-		
-		$cercles = $this->Seance->query($sql);
-		$markers = array();
-		foreach($cercles as $cercle)	{
-			$markerOptions_current = $markerOptions;
-			$markerOptions_current['id'] = sprintf('%d', $cercle['cercles']['id']); 				
-			$markerOptions_current['latitude'] = sprintf('%f', $cercle['cercles']['lat']);
-			$markerOptions_current['longitude'] = sprintf('%f', $cercle['cercles']['lng']);
-			$markerOptions_current['windowText'] = 
-				sprintf($windowText, 
-					addslashes($cercle['cercles']['name']),
-					$cercle[0]['nbr_seances'],
-					$cercle[0]['gain']);
-			$markers[] = $markerOptions_current; 
-		}
-		
-		$this->set('mapOptions', $mapOptions);
-		$this->set('markers', $markers);
 	}
 	
 	public function charts()	{
@@ -233,4 +178,40 @@ class SeancesController extends AppController {
 		$graph->Stroke($full_path_graph);
 	}
 	
+    public function location_sessions()	{
+    	
+		$windowText = '<div style="width:220px;height:110px;background:#52D017;border-width:2px;border-style:solid;border-color:black;padding-left:1px;padding-top:1px">';
+		$windowText .= '<strong style="text-decoration:underline">%s</strong><br/><br/>';
+		$windowText .= '<b>Visite(s): %s</b><br/>';
+		$windowText .= '<b>Résultat: %s</b><br/>';
+		$windowText .= '</div>';
+		
+		$sql = '
+		SELECT cercles.id, cercles.name, cercles.lat, cercles.lng, COUNT(seances.id) as nbr_seances, SUM(seances.result) as gain
+		FROM seances
+		INNER JOIN cercles ON cercles.id = seances.cercle_id
+		GROUP BY cercles.id';
+		
+		$cercles = $this->Seance->query($sql);
+		
+		$markers = array();
+		$library = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><markers></markers>');
+		foreach($cercles as $cercle)	{
+			$marker = $library->addChild('marker');
+			$marker->addAttribute('id', sprintf('%d', $cercle['cercles']['id']));
+			$marker->addAttribute('name', $cercle['cercles']['name']);
+			$marker->addAttribute('lat', sprintf('%f', $cercle['cercles']['lat']));
+			$marker->addAttribute('lng', sprintf('%f', $cercle['cercles']['lng']));
+			$marker->addAttribute('windowText', sprintf(
+				$windowText, 
+				addslashes($cercle['cercles']['name']),
+				$cercle[0]['nbr_seances'],
+				$cercle[0]['gain']
+			));
+		}
+					
+		header('Content-type: text/xml');
+		echo $library->asXML();
+		exit();		
+    }
 }
