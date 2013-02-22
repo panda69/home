@@ -1,6 +1,7 @@
 <?php
 	print $javascript->link('http://maps.google.com/maps/api/js?sensor=false', false) . "\n";
 	print $javascript->link('util') . "\n";
+	print $javascript->link('markerclusterer') . "\n";
 
 	$this->Html->addCrumb('Synoptique', '/Seances/Synoptique');	
 	$this->Html->addCrumb('Carte');
@@ -24,9 +25,8 @@
 		// Creating the map  
 		map = new google.maps.Map(document.getElementById('map'), options);		
 		
-		/* Creating a LatLngBounds object */
-		var bounds = new google.maps.LatLngBounds();
-		
+		var markers = [];
+				
 		var dataurl = "<?php echo $this->Html->url( array('controller'=>'seances','action'=>'location_sessions')); ?>";
 		
 	    downloadUrl(dataurl, function(data) {
@@ -45,6 +45,8 @@
 		        	icon: '<?php echo $this->webroot . IMAGES_URL . 'cg_icon.png'; ?>'
 		        });
 		        
+		        markers.push(marker);
+		        
 		        var html = xmlmarkers[i].getAttribute("windowText");
 		        
 		    	// Adding a click event to the marker
@@ -61,13 +63,12 @@
 		    			// Opening the InfoWindow
 		    			infoWindow.open(map, _marker);
 		    		});
-		    	})(html, marker);      
-		    	
-				// Extending the bounds object with each LatLng
-				bounds.extend(latlng);		    	
+		    	})(html, marker);      		    	
 	        }     
 	        
-	        map.fitBounds(bounds);	        
+	    	// Création des clusters
+	    	markerclusterer = new MarkerClusterer(map, markers, {averageCenter: true, maxZoom: 16});
+	    	markerclusterer.fitMapToMarkers();
 	    });		
 	    	    
 	};
