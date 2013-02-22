@@ -7,7 +7,7 @@
 	$this->Html->addCrumb('Carte');
 ?>
 
-<div id="map" style="width:1235px; height:800px;"></div>
+<div id="map" style="width:100%; height:800px"></div>
 
 <script type="text/javascript">
 (function() {
