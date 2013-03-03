@@ -190,7 +190,7 @@ class SimulationsController extends AppController {
 			$sd = (sqrt($sdx) * 1.1) / sqrt($tnohp); 
 						
 			$resultPerHours = array();
-			foreach(array(1,5,10,100,1000,10000) as $hours)	{
+			foreach(array(1,5,10,15,100,1000,10000) as $hours)	{
 				$tmpEV = round($gph * floatval($hours) * $tnohp, 2);
 				$tmpSD = round($sd * sqrt(floatval($hours) * $tnohp), 2);
 				$tmpResult = sprintf("Entre %d u et %d u", round($tmpEV - $tmpSD), round($tmpEV + $tmpSD));
@@ -202,10 +202,10 @@ class SimulationsController extends AppController {
 			}
 			
 			$results = array(
-				'TNOHP' => $tnohp, 
-				'ABph' => round($abph,2),
-				'GPH' => round($gph,3),
-				'WR' => round($wr * 100.0, 2) . '%',
+				'Hands Bet/100' => $tnohp, 
+				'Average Bet' => round($abph,2),
+				'Gain/Hand' => round($gph,3),
+				'Win Rate %' => round($wr * 100.0, 2) . '%',
 				'ResultsPerHour' => $resultPerHours
 			);
 			
