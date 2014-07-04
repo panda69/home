@@ -11,6 +11,6 @@
 <?php echo $this->Html->link('Séances', array('controller' => 'PlayingSessions', 'action' => 'index')); ?>
 </li>
 <li>
-<?php echo $this->Html->link('Simulations', array('controller' => 'Tools', 'action' => 'index')); ?>
+<?php echo $this->Html->link('Simulations', array('controller' => 'Pages', 'action' => 'display', 'simulations')); ?>
 </li>
 </ul>

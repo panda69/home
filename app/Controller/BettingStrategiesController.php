@@ -4,8 +4,12 @@ App::uses('SnyderSimComponent', 'Controller/Component');
 
 class BettingStrategiesController extends Controller	{
 	public $uses = array();
+	
+	public function index()	{
 		
-	public function index($deck_number = 6, $penetration=75)	{
+	}
+		
+	public function simulation($deck_number = 6, $penetration=75)	{
 		// Paramètres de la simulation
 // 		$bet_spread = [
 // 			-1 => 2,
