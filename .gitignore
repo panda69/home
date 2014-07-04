@@ -2,5 +2,5 @@
 .settings
 .project
 app/tmp/
-app/config/database.php
+app/Config/database.php
 
