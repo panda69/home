@@ -282,20 +282,28 @@ label {
 	font-size: 110%;
 	margin-bottom:3px;
 }
-input.xsmall {
-	clear: both;
-	font-size: 110%;
-	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 4px;
-	width:10px;
-	height:20px;
-}
 input.small {
 	clear: both;
 	font-size: 110%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
 	padding: 4px;
+	width:30px;
+	height:20px;
+}
+input.xsmall {
+	clear: both;
+	font-size: 110%;
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	padding: 4px;
 	width:35px;
+	height:20px;
+}
+input.xxsmall {
+	clear: both;
+	font-size: 110%;
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	padding: 4px;
+	width:40px;
 	height:20px;
 }
 input.medium {
@@ -609,3 +617,16 @@ div.code-coverage-results span.result-good {
 .boxSimResult {
 	width:400px;
 }
+
+#indexForm table, th, td	{
+	border:1px solid black;
+}
+
+#BettingStrategieIndexForm table {
+	width: 200px;
+}
+
+#BettingStrategieIndexForm table td, table th {
+	text-align:center;
+}
+
