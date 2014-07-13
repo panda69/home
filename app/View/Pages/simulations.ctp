@@ -1,6 +1,6 @@
 <?php
 	$this->Html->addCrumb('Simulations', '/Pages/display/simulations');
-
+	
 	echo '<ul>';
 	echo '<li>';
 	echo $this->Html->link('Statégie de base', array('controller' => 'Tools', 'action' => 'EstimationStrategieBase'));

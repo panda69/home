@@ -3,14 +3,16 @@
 App::uses('Component', 'Controller');
 
 class BetSpreadComponent extends Component {
-	public $bet_spread = NULL;
+	public $spread = NULL;
+	// MIN TC et MAX TC de la rampe de mise
 	public $spread_min_tc = NULL;
 	public $spread_max_tc = NULL;
 	
 	public function setParams(array $params)	{
-		$this->bet_spread = $params['bet_spread'];
-		$this->spread_min_tc = min(array_keys($this->bet_spread));
-		$this->spread_max_tc = max(array_keys($this->bet_spread));
+		$this->spread = $params['spread'];
+		// MIN TC et MAX TC de la rampe de mise
+		$this->spread_min_tc = min(array_keys($this->spread));
+		$this->spread_max_tc = max(array_keys($this->spread));
 	}
 	
 	/**
@@ -26,11 +28,11 @@ class BetSpreadComponent extends Component {
 		$bet = 0;
 		
 		if ($tc < $this->spread_min_tc) {
-			$bet = $this->bet_spread[$this->spread_min_tc];
+			$bet = $this->spread[$this->spread_min_tc];
 		} elseif ($tc > $this->spread_max_tc)	{
-			$bet = $this->bet_spread[$this->spread_max_tc];
-		} elseif (array_key_exists($tc, $this->bet_spread))	{
-			$bet = $this->bet_spread[$tc];
+			$bet = $this->spread[$this->spread_max_tc];
+		} elseif (array_key_exists($tc, $this->spread))	{
+			$bet = $this->spread[$tc];
 		} else {
 			// Cas d'erreur
 			exit("getBetFromTrueCount : Unknown TC value $tc");

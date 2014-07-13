@@ -4,7 +4,7 @@ App::uses('Component', 'Controller');
 
 class FrequencyDistributionComponent extends Component {
 	public $deck_penetration;
-	public $deck_number;
+	public $decks_number;
 	public $base_adv;
 	
 	private function get_tc_from_adv($adv)	{
@@ -16,13 +16,13 @@ class FrequencyDistributionComponent extends Component {
 	
 	public function setParams(array $params)	{
 		$this->deck_penetration = $params['deck_penetration'];
-		$this->deck_number = $params['deck_number'];
+		$this->decks_number = $params['decks_number'];
 		$this->base_adv = $params['base_adv'];
 	}
 	
 	public function getRows()	{
-		$frequency_distributions_file_name = sprintf('frequency_distributions_%d_deck_game.php', $this->deck_number);
-		require 'FrequencyDistributions' . DS . $frequency_distributions_file_name;
+		$frequency_distributions_file_name = sprintf('frequency_distributions_%d_deck_game.php', $this->decks_number);
+		require 'FrequencyDistributions' . DIRECTORY_SEPARATOR . $frequency_distributions_file_name;
 		
 		$result = array();
 		foreach ($frequency_distributions[$this->deck_penetration] as $adv => $hands)	{

@@ -618,15 +618,14 @@ div.code-coverage-results span.result-good {
 	width:400px;
 }
 
-#indexForm table, th, td	{
-	border:1px solid black;
+table.betspread {
+	width: 10%;
+	border: 1px solid black;
+	border-collapse: collapse;
 }
 
-#BettingStrategieIndexForm table {
-	width: 200px;
-}
-
-#BettingStrategieIndexForm table td, table th {
-	text-align:center;
+table.betspread td, th {
+	text-align: center;
+	border: 1px solid black;
 }
 

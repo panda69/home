@@ -6,22 +6,23 @@ App::uses('BetSpreadComponent', 'Controller/Component');
 
 class SnyderSimComponent extends Component {
 	public $components = array('FrequencyDistribution', 'BetSpread');
+	// Paramètres de la simulation
 	public $deck_penetration;
-	public $deck_number;
+	public $decks_number;
 	public $bet_spread;
-	public $base_adv = -0.52;
+	public $base_adv;
 	
 	public function __construct(ComponentCollection $collection, $settings = array()) {
 		parent::__construct($collection, $settings);
 		
 		$this->FrequencyDistribution->setParams( array(
 			'deck_penetration' => $this->deck_penetration,
-			'deck_number' => $this->deck_number,
-			'base_adv' => $this->base_adv				
+			'decks_number' => $this->decks_number,
+			'base_adv' => $this->base_adv		
 		));
 		
 		$this->BetSpread->setParams( array(
-			'bet_spread' => $this->bet_spread
+			'spread' => $this->bet_spread
 		));
 	}
 		
@@ -44,12 +45,14 @@ class SnyderSimComponent extends Component {
 		}
 		
 		$result = array(
+			'decks_number' => $this->decks_number,				
+			'deck_penetration' => $this->deck_penetration,
 			'total_units_bet' => $total_units_bet,
 			'total_gain' => $total_gain,
 			'total_number_of_hands_played' => $total_number_of_hands_played
 		);
 		
-		var_dump($result);
+		return $result;
 	}
 	
 }
