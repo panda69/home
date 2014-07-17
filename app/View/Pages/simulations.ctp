@@ -3,7 +3,7 @@
 	
 	echo '<ul>';
 	echo '<li>';
-	echo $this->Html->link('Statégie de base', array('controller' => 'Tools', 'action' => 'EstimationStrategieBase'));
+	echo $this->Html->link('Statégie de base', array('controller' => 'BasicStrategy', 'action' => 'simulation'));
 	echo '</li>';
 	echo '<li>';
 	echo $this->Html->link('Variation de mise', array('controller' => 'BettingStrategies', 'action' => 'index'));
