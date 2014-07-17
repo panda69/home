@@ -44,12 +44,21 @@ class SnyderSimComponent extends Component {
 			$total_gain += $units_bet * $adv;
 		}
 		
+		$average_bet_per_hand = (float)$total_units_bet / (float)$total_number_of_hands_played;
+		$gain_per_hand = (float)$total_gain / (float)$total_number_of_hands_played;
+		$win_rate = $gain_per_hand / $average_bet_per_hand;
+		$win_rate_in_percent = $win_rate * 100.0;
+		
 		$result = array(
 			'decks_number' => $this->decks_number,				
 			'deck_penetration' => $this->deck_penetration,
 			'total_units_bet' => $total_units_bet,
 			'total_gain' => $total_gain,
-			'total_number_of_hands_played' => $total_number_of_hands_played
+			'total_number_of_hands_played' => $total_number_of_hands_played,
+			'average_bet_per_hand' => $average_bet_per_hand,
+			'gain_per_hand' => $gain_per_hand,
+			'win_rate_in_percent' => $win_rate_in_percent . '%'
+				
 		);
 		
 		return $result;
