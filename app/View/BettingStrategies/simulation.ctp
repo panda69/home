@@ -14,6 +14,8 @@ echo $this->Form->hidden('DeckPenetration', array('value' => $deck_penetration))
 
 echo $this->Form->input('BaseAdv', array('type' => 'text', 'label' => 'Avantage de base', 'class' => 'medium'));
 
+echo $this->Form->input('Unit', array('type' => 'text', 'label' => 'Unité', 'class' => 'xxsmall'));
+
 echo '<label>Variation de mise</label>';
 echo '<table class="betspread">';
 

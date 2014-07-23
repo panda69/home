@@ -42,6 +42,9 @@ class BettingStrategiesController extends Controller	{
 				'bet_spread' => $this->request->data['BettingStrategie']['BetSpread']
 			));
 			
+			$this->SnyderSim->testFrequencyDistribution();
+			exit();
+			
 			// Lancement de la simulation
 			$result = $this->SnyderSim->launch();
 			

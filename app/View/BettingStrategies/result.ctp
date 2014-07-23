@@ -12,6 +12,18 @@
 	);
 
 	foreach ($result as $key => $value)	{
-		echo "<p>$key : $value</p>"; 
+		if (is_array($value))	{			
+			foreach ($value as $hours => $result_per_hour)	{
+				echo "
+					<p>
+						<ul>Pour $hours heures
+							<li>{$result_per_hour['expected_win']}</li>
+							<li>{$result_per_hour['standard_deviation']}</li>
+						</ul>
+					</p>";
+			}
+		} else	{
+			echo "<p>$key : $value</p>";
+		} 
 	}
 ?>
