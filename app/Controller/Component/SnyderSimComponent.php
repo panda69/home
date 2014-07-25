@@ -67,8 +67,8 @@ class SnyderSimComponent extends Component {
 		$per_hours_of_play = array();
 		foreach ($this->hours_of_play as $hours)	{
 			$per_hours_of_play[$hours] = array(
-				'expected_win' => $gain_per_hand * $hours * 100.0,
-				'standard_deviation' => $standard_deviation_per_hand * sqrt($hours * 100)
+				'expected_win' => round($gain_per_hand * $hours * 100.0, 2),
+				'standard_deviation' => round($standard_deviation_per_hand * sqrt($hours * 100), 2)
 			);
 		}
 		
@@ -79,8 +79,9 @@ class SnyderSimComponent extends Component {
 			'total_gain' => $total_gain,
 			'total_number_of_hands_played' => $total_number_of_hands_played,
 			'average_bet_per_hand' => $average_bet_per_hand,
-			'gain_per_hand' => $gain_per_hand,
-			'win_rate_in_percent' => $win_rate_in_percent . '%',
+			'gain_per_hand' => round($gain_per_hand, 3),
+			'win_rate_in_percent' => round($win_rate_in_percent, 2) . '%',
+			'standard_deviation_per_hand' => round($standard_deviation_per_hand, 2),
 			'per_hours_of_play' => $per_hours_of_play
 		);
 		

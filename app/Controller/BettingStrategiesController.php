@@ -3,7 +3,7 @@
 App::uses('SnyderSimComponent', 'Controller/Component');
 
 class BettingStrategiesController extends Controller	{
-	const COUNT_RANGE_START = -1;
+	const COUNT_RANGE_START = -2;
 	const COUNT_RANGE_END = 6;
 	
 	public $uses = array();
@@ -41,9 +41,6 @@ class BettingStrategiesController extends Controller	{
 				'base_adv' => $this->request->data['BettingStrategie']['BaseAdv'],
 				'bet_spread' => $this->request->data['BettingStrategie']['BetSpread']
 			));
-			
-			$this->SnyderSim->testFrequencyDistribution();
-			exit();
 			
 			// Lancement de la simulation
 			$result = $this->SnyderSim->launch();
