@@ -629,3 +629,14 @@ table.betspread td, th {
 	border: 1px solid black;
 }
 
+table#sim_result {
+	width: 20%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+table#sim_result td, th {
+	text-align: center;
+	border: 1px solid black;
+}
+

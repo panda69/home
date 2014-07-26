@@ -39,7 +39,8 @@ class BettingStrategiesController extends Controller	{
 				'deck_penetration' => $this->request->data['BettingStrategie']['DeckPenetration'],
 				'decks_number' => $this->request->data['BettingStrategie']['DecksNumber'],
 				'base_adv' => $this->request->data['BettingStrategie']['BaseAdv'],
-				'bet_spread' => $this->request->data['BettingStrategie']['BetSpread']
+				'bet_spread' => $this->request->data['BettingStrategie']['BetSpread'],
+				'unit' => $this->request->data['BettingStrategie']['Unit']
 			));
 			
 			// Lancement de la simulation

@@ -11,20 +11,35 @@
 		sprintf('/BettingStrategies/simulation/%d/%d', $decks_number, $deck_penetration)
 	);
 
+	echo '<table id="sim_result">';
 	foreach ($result as $key => $value)	{
 		if (is_array($value))	{		
-			echo "<p>";	
+			echo "<tr><td><br/><br/></td><tr>";
+			$bFirstValue = true;	
 			foreach ($value as $hours => $result_per_hour)	{
-				echo "
-						<ul>Pour $hours heures
-							<li>Expected Win : {$result_per_hour['expected_win']}</li>
-							<li>Standard deviation : {$result_per_hour['standard_deviation']}</li>
-						</ul>
-					";
+				if ($bFirstValue)	{
+					$bFirstValue = false;
+				} else {
+					echo "<tr><td><br/></td><tr>";
+				}
+				
+				echo '<tr>';
+				echo '<td>' . sprintf('Units/%d Hrs', $hours) . '</td>';
+				echo '<td>' . $result_per_hour['Expected Win'] . '</td>'; 
+				echo '</tr>';
+				
+				echo '<tr>';
+				echo '<td>' . sprintf('S.D./%d Hrs', $hours) . '</td>';
+				echo '<td>' . $result_per_hour['Standard Deviation'] . '</td>';
+				echo '</tr>';
+
+				echo '<tr>';
+				echo '<td>' . sprintf('Min Max/%d Hrs', $hours) . '</td>';
+				echo '<td>' . $result_per_hour['Min Max']['min'] . ' => ' . $result_per_hour['Min Max']['max'] . '</td>';
+				echo '</tr>';
 			}
-			echo "</p>";
 		} else	{
-			echo "<p>$key : $value</p>";
+			echo "<tr><td>$key</td><td>$value</td></tr>";
 		} 
 	}
 ?>
