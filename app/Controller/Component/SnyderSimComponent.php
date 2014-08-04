@@ -7,13 +7,12 @@ App::uses('BetSpreadComponent', 'Controller/Component');
 class SnyderSimComponent extends Component {
 	public $components = array('FrequencyDistribution', 'BetSpread');
 	// Heures de jeu
-	public $hours_of_play = array(1,5,10,100,1000,10000,100000);
+	public $hours_of_play = array(1,5,10,100,1000,10000);
 	// Paramètres de la simulation
 	public $deck_penetration;
 	public $decks_number;
 	public $bet_spread;
 	public $base_adv;
-	public $unit;
 	
 	
 	public function __construct(ComponentCollection $collection, $settings = array()) {
@@ -40,8 +39,8 @@ class SnyderSimComponent extends Component {
 		$total_units_bet = 0.0;
 		$total_gain = 0.0;
 		$total_number_of_hands_played = 0;
+		$variance = 0.0;
 		$standard_deviation_per_hand = 0.0;
-		$standard_deviation_per_hand_tmp = 0.0;
 		foreach ($rows as $row)	{
 			$hands = $row['hands'];
 			$tc = $row['tc'];
@@ -52,7 +51,7 @@ class SnyderSimComponent extends Component {
 			$units_bet = $hands * (float)$bet;
 			$total_units_bet += $units_bet;			
 			$total_gain += $units_bet * $adv;
-			$standard_deviation_per_hand_tmp += pow($bet, 2) * $hands;
+			$variance += pow($bet, 2) * $hands;
 		}
 		
 		$average_bet_per_hand = (float)$total_units_bet / (float)$total_number_of_hands_played;
@@ -60,16 +59,15 @@ class SnyderSimComponent extends Component {
 		$win_rate = $gain_per_hand / $average_bet_per_hand;
 		$win_rate_in_percent = $win_rate * 100.0;
 		
-		$standard_deviation_per_hand_tmp = sqrt($standard_deviation_per_hand_tmp) * 1.1;
-		$standard_deviation_per_hand = $standard_deviation_per_hand_tmp / sqrt($total_number_of_hands_played);
+		$standard_deviation_per_hand = sqrt($variance) * 1.1 / sqrt($total_number_of_hands_played);
 		
 		// On considère que l'on joue 100 mains par heure
 		$per_hours_of_play = array();
 		foreach ($this->hours_of_play as $hours)	{
 			$expected_win = round($gain_per_hand * $hours * 100.0, 2);
 			$standard_deviation = round($standard_deviation_per_hand * sqrt($hours * 100), 2);
-			$max = $expected_win + $standard_deviation;
-			$min = $expected_win - $standard_deviation;
+			$max = round($expected_win + $standard_deviation);
+			$min = round($expected_win - $standard_deviation);
 			
 			$per_hours_of_play[$hours] = array(
 				'Expected Win' => $expected_win,

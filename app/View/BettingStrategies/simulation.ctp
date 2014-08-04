@@ -12,9 +12,7 @@ echo $this->Form->create('BettingStrategie');
 echo $this->Form->hidden('DecksNumber', array('value' => $decks_number));
 echo $this->Form->hidden('DeckPenetration', array('value' => $deck_penetration));
 
-echo $this->Form->input('BaseAdv', array('type' => 'text', 'label' => 'Avantage de base', 'class' => 'medium'));
-
-echo $this->Form->input('Unit', array('type' => 'text', 'label' => 'Unité', 'class' => 'xxsmall'));
+echo $this->Form->input('BaseAdv', array('type' => 'text', 'label' => 'Avantage de base', 'class' => 'medium', 'default' => $base_adv));
 
 echo '<label>Variation de mise</label>';
 echo '<table class="betspread">';
@@ -30,7 +28,7 @@ foreach ($range as $value)	{
 	echo $value['label'];
 	echo '</td>';
 	echo '<td>';
-	echo $this->Form->input($value['name'], array('type' => 'text', 'label' => false, 'div' => false, 'class' => 'small'));
+	echo $this->Form->input($value['name'], array('type' => 'text', 'label' => false, 'div' => false, 'class' => 'small', 'default' => $value['default']));
 	echo '</td>';
 	echo '</tr>';
 }

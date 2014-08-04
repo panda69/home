@@ -10,7 +10,7 @@
 		sprintf('Simulation (%d jeux et %d%% de pénétration)', $decks_number, $deck_penetration),
 		sprintf('/BettingStrategies/simulation/%d/%d', $decks_number, $deck_penetration)
 	);
-
+	
 	echo '<table id="sim_result">';
 	foreach ($result as $key => $value)	{
 		if (is_array($value))	{		
@@ -25,21 +25,31 @@
 				
 				echo '<tr>';
 				echo '<td>' . sprintf('Units/%d Hrs', $hours) . '</td>';
-				echo '<td>' . $result_per_hour['Expected Win'] . '</td>'; 
+				echo '<td>' . sprintf('%.2f u', $result_per_hour['Expected Win']) . '</td>'; 
 				echo '</tr>';
 				
 				echo '<tr>';
 				echo '<td>' . sprintf('S.D./%d Hrs', $hours) . '</td>';
-				echo '<td>' . $result_per_hour['Standard Deviation'] . '</td>';
+				echo '<td>' . sprintf('%.2f u', $result_per_hour['Standard Deviation']) . '</td>';
 				echo '</tr>';
 
 				echo '<tr>';
 				echo '<td>' . sprintf('Min Max/%d Hrs', $hours) . '</td>';
-				echo '<td>' . $result_per_hour['Min Max']['min'] . ' => ' . $result_per_hour['Min Max']['max'] . '</td>';
+				echo '<td>' . sprintf('%d u', $result_per_hour['Min Max']['min']) . ' => ' . sprintf('%d u', $result_per_hour['Min Max']['max']) . '</td>';
 				echo '</tr>';
 			}
 		} else	{
-			echo "<tr><td>$key</td><td>$value</td></tr>";
+			echo "
+				<tr>
+					<td>$key</td>
+					<td>$value</td>
+				</tr>
+			";
 		} 
 	}
+	echo "</table>";
+	
+	echo $this->Form->create('BettingStrategieBack');
+	echo $this->Form->hidden('defaultValues', array('value' => serialize($this->request->data['BettingStrategie'])));
+	echo $this->Form->end('Retour à la simulation');
 ?>
