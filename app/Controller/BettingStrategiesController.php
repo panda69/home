@@ -2,7 +2,7 @@
 
 App::uses('SnyderSimComponent', 'Controller/Component');
 
-class BettingStrategiesController extends Controller	{
+class BettingStrategiesController extends AppController	{
 	const COUNT_RANGE_START = -2;
 	const COUNT_RANGE_END = 6;
 	

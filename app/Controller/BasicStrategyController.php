@@ -1,6 +1,6 @@
 <?php
 
-class BasicStrategyController extends Controller {
+class BasicStrategyController extends AppController {
 	public $uses = array();
 	
 	public function simulation()	{

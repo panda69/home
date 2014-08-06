@@ -47,19 +47,19 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<?php 
 				echo $this->Html->getCrumbs(' > ','Home');
 				echo $this->Html->addCrumb('Home', '/');
-				/*
-				if (!is_null($this->Session->read('Auth.User')))	{
+
+				if (!is_null(AuthComponent::user('id')))	{
 					echo '<span style="float:right">'; 
 					echo $this->Html->link('Déconnexion', array('controller' => 'Users', 'action' => 'logout'));
 					echo '</span>';
 				} 
-				*/
 			?>
 			</h1> 
 		</div>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
+			<?php echo $this->Session->flash('auth'); ?>
 
 			<?php echo $this->fetch('content'); ?>
 		</div>

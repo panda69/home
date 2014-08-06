@@ -13,4 +13,8 @@
 <li>
 <?php echo $this->Html->link('Simulations', array('controller' => 'Pages', 'action' => 'display', 'simulations')); ?>
 </li>
+<li>
+<?php echo $this->Html->link('Administration', array('controller' => 'Pages', 'action' => 'display', 'administration')); ?>
+</li>
+
 </ul>
