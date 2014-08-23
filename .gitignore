@@ -3,6 +3,7 @@
 .project
 app/tmp/
 app/Config/database.php
-app/webroot/img/graph/
+app/webroot/img/graph/*
+
 
 
