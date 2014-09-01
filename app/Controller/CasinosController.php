@@ -45,4 +45,7 @@ class CasinosController extends AppController {
 		}		
 	}
 	
+	public function geocoder()	{
+	}
+	
 }
