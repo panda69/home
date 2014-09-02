@@ -15,7 +15,7 @@
 	echo $this->Form->input('zipcode', array('label' => 'Code postal', 'class' => 'medium'));
 	echo $this->Form->input('town', array('label' => 'Ville', 'class' => 'xxlarge'));
 	echo $this->Form->input('country_id', array('label' => 'Pays'));
-	echo $this->Form->input('lat', array('label' => 'Latitude', 'class' => 'large'));
-	echo $this->Form->input('lng', array('label' => 'Longitude', 'class' => 'large'));
+	echo $this->Form->input('lat', array('label' => 'Latitude', 'class' => 'large', 'type' => 'text'));
+	echo $this->Form->input('lng', array('label' => 'Longitude', 'class' => 'large', 'type' => 'text'));
 	echo $this->Form->end('Ajouter'); 
 ?>
