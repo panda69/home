@@ -346,6 +346,14 @@ input.xxlarge {
 	width:250px;
 	height:20px;
 }
+input.xxxlarge {
+	clear: both;
+	font-size: 110%;
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	padding: 4px;
+	width:400px;
+	height:20px;
+}
 
 input, textarea {
 	clear: both;
@@ -640,3 +648,14 @@ table#sim_result td, th {
 	border: 1px solid black;
 }
 
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}

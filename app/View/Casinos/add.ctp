@@ -4,6 +4,11 @@
 ?>
 <h2>Ajouter un casino</h2>
 <?php
+	echo $this->Html->link('Geocoder',
+		array('controller' => 'Casinos','action' => 'geocoder'),
+		array('class' => 'button', 'target' => '_blank')
+	);
+
 	echo $this->Form->create('Casino');
 	echo $this->Form->input('name', array('label' => 'Nom', 'class' => 'xlarge'));
 	echo $this->Form->input('address', array('label' => 'Adresse', 'class' => 'xxlarge'));

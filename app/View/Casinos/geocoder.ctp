@@ -65,9 +65,11 @@
   			
   				// Creating the content of the InfoWindow to the address
   				// and the returned position
-  				var content = '<strong>' + results[0].formatted_address + '</strong><br />';
+  				var content = '<div style="width:200px;height:100px">';
+  				content += '<strong>' + results[0].formatted_address + '</strong><br />';
   				content += 'Lat: ' + results[0].geometry.location.lat() + '<br />';
   				content += 'Lng: ' + results[0].geometry.location.lng();
+  				content += '</div>';
   			
   				// Adding the content to the InfoWindow
   				infowindow.setContent(content);
@@ -101,13 +103,14 @@
 	echo $this->Form->create(NULL, array('action'=>"", 'onsubmit'=>"getCoordinates(this.CasinoAddress.value); return false"));
 	echo $this->Form->input('address', array(
 		'label' => 'Entrez votre adresse :',
-		'size' => 100,
-		'div' => false,
-		'default' => '19 allée de Fontenay, Lyon, France'
+		'class' => 'xxxlarge',
+		'div' => true,
+		'default' => '2 rue Abraham Bloch, Lyon, France'
 	));
+
 	echo $this->Form->end( array(
 		'label'	=> 'Coordonnées',
-		'div'	=> false
+		'div'	=> true
 	));
 
 	echo '<p/><div id="map_canvas" style="width: 90%; height: 700px"></div>';
