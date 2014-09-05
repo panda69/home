@@ -30,8 +30,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 		echo $this->Html->css('home');
 
-		echo $this->Html->script(array('jquery.js','date.js','jquery.datePicker.js','cake.datePicker.js'));
-		echo $this->Html->css( array('datePicker.css')); 
+// 		echo $this->Html->script(array('jquery.js','date.js','jquery.datePicker.js','cake.datePicker.js'));
+// 		echo $this->Html->css( array('datePicker.css')); 
 
 		echo $scripts_for_layout;
 
