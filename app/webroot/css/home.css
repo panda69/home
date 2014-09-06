@@ -322,6 +322,14 @@ input.xmedium {
 	width:55px;
 	height:20px;
 }
+input.xxmedium {
+	clear: both;
+	font-size: 110%;
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	padding: 4px;
+	width:70px;
+	height:20px;
+}
 input.large {
 	clear: both;
 	font-size: 110%;

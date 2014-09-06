@@ -28,7 +28,7 @@ foreach ($range as $value)	{
 	echo $value['label'];
 	echo '</td>';
 	echo '<td>';
-	echo $this->Form->input($value['name'], array('type' => 'text', 'label' => false, 'div' => false, 'class' => 'small', 'default' => $value['default']));
+	echo $this->Form->input($value['name'], array('type' => 'number', 'label' => false, 'div' => false, 'class' => 'xxsmall', 'default' => $value['default']));
 	echo '</td>';
 	echo '</tr>';
 }
