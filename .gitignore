@@ -4,7 +4,8 @@
 app/tmp/
 app/Config/database.php
 app/Config/database.php.prod
-app/webroot/img/graph/graph.png
+app/webroot/img/graph/
+
 
 
 
