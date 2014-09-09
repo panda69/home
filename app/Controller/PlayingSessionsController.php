@@ -84,23 +84,19 @@ class PlayingSessionsController extends AppController {
 	}
 	
 	public function charts()	{
-		
 	}
 	
 	public function chart($choice=1)	{
+		$this->set('type_chart', $choice);
+	}
+	
+	public function StrokeChart($choice=1)	{
+		// Pas de vue associée
+		$this->autoRender = false;
+		
 		require(APP . 'Vendor' . DS . 'jpgraph' . DS . 'jpgraph.php');
 		require(APP . 'Vendor' . DS . 'jpgraph' . DS . 'jpgraph_line.php');
 		
-		// Répertoire de stockage des images générées
-		$dir_path_graph = WWW_ROOT . 'img' . DIRECTORY_SEPARATOR . 'graph';
-		if (!file_exists($dir_path_graph))	{
-			mkdir($dir_path_graph);
-		}
-		
-		foreach (glob($dir_path_graph . DIRECTORY_SEPARATOR . "*.png") as $filename) {
-			unlink($filename);
-		}		
-				
 		$params = array(
 			'recursive' => -1,
 			'fields' => array('PlayingSession.result'),
@@ -175,17 +171,9 @@ class PlayingSessionsController extends AppController {
 		$graph->legend->SetFrameWeight(1);
 		$graph->legend->SetColor('#4E4E4E','#00A78A');
 		$graph->legend->SetMarkAbsSize(8);
-		
-		// Nom du fichier de l'image générée
-		$file_graph_name = 'graph'. time() . '.png';
-		
-		// Chemin complet du fichier de l'image générée
-		$full_path_graph = $dir_path_graph . DIRECTORY_SEPARATOR . $file_graph_name;
-				
+						
 		// Génération de l'image
-		$graph->Stroke($full_path_graph);
-		
-		$this->set('file_graph_name', $file_graph_name);
+		$graph->Stroke();
 	}
 	
     public function location_sessions()	{

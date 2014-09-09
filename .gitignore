@@ -3,8 +3,8 @@
 .project
 app/tmp/
 app/Config/database.php
-app/Config/database.php.prod
-app/webroot/img/graph/
+
+
 
 
 
